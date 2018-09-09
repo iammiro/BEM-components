@@ -1,0 +1,38 @@
+.document-list {
+  max-width: 520px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  font-family: sans-serif;
+}
+
+
+.document-list-item {
+  border: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.document-list-item__images-block {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 23;
+  margin: 5px 10px;
+}
+
+.document-list-item__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 5px;
+}
+
+.document-list-item__document-date {
+  font-size: 13px;
+  color: gray;
+}

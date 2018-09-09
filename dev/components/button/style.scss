@@ -1,0 +1,75 @@
+$primary-color: #ff9000;
+
+@mixin button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn {
+  @include button-reset;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 7px 15px;
+  border-radius: 3px;
+  border: solid 1px transparent;
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none;
+  font-family: sans-serif;
+  outline: none;
+}
+
+.btn::-moz-focus-inner {
+  border: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+  filter: saturate(150%);
+}
+
+.btn:hover,
+.btn:focus {
+  color: #ffffff;
+  border-color: darken($primary-color, 10);
+  background-color: lighten($primary-color, 10);
+}
+
+.document-list-item__btn {
+  flex-grow: 1;
+  margin: 20px;
+}
+
+.btn--normal {
+  border: 1px solid #fd7722;
+  background-color: $primary-color;
+  color: #ffffff;
+}
+
+.btn--disable {
+  opacity: .5;
+  pointer-events: none;
+}
+
+.btn--disable:hover,
+.btn--disable:focus {
+  color: #ffffff;
+  border-color: transparent;
+  background-color: $primary-color;
+}
+
+@media (hover: none) {
+  .btn:hover,
+  .btn:focus {
+    color: inherit;
+    border-color: $primary-color;
+    background-color: $primary-color;
+  }
+}

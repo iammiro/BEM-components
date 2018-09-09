@@ -1,0 +1,28 @@
+include ../button/button
+
+mixin document-list()
+    .document-list
+        .document-list-item
+            div.document-list-item__images-block
+                div.document-list-item__image-wrapper
+                    img(src='./images/document.jpg' alt='img')
+                div.document-list-item__text
+                    span.document-list-item__document-name name_of_document
+                    span.document-list-item__document-date Last Edited: 08.08.2014
+            +button('/', 'View Document')(class="btn document-list-item__btn btn--normal")
+        .document-list-item
+            div.document-list-item__images-block
+                div.document-list-item__image-wrapper
+                    img(src='./images/document.jpg' alt='img')
+                div.document-list-item__text
+                    span.document-list-item__document-name name_of_document
+                    span.document-list-item__document-date Last Edited: 08.08.2014
+            +button('/', 'View Document')(class="btn document-list-item__btn btn--normal")
+        .document-list-item
+            div.document-list-item__images-block
+                div.document-list-item__image-wrapper
+                    img(src='./images/document.jpg' alt='img')
+                div.document-list-item__text
+                    span.document-list-item__document-name name_of_document
+                    span.document-list-item__document-date Last Edited: 08.08.2014
+            +button('/', 'View Document')(class="btn document-list-item__btn btn--normal btn--disable")
