@@ -17,7 +17,7 @@ var modernizr = require('gulp-modernizr');
 var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('modernizr', function () {
-  return gulp.src('./dev/scripts/*.js')
+  return gulp.src('./dev/**/*.*')
     .pipe(modernizr({
       options: ['setClasses'],
       tests: ['touchevents']
