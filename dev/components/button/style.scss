@@ -35,16 +35,24 @@ $primary-color: #ff9000;
   filter: saturate(150%);
 }
 
-.btn:hover,
-.btn:focus {
-  color: #ffffff;
-  border-color: darken($primary-color, 10);
-  background-color: lighten($primary-color, 10);
+.no-touchevents {
+  .btn:hover,
+  .btn:focus {
+    color: #ffffff;
+    border-color: darken($primary-color, 10);
+    background-color: lighten($primary-color, 10);
+  }
 }
 
 .document-list-item__btn {
   flex-grow: 1;
   margin: 20px;
+}
+
+.touchevents {
+  .document-list-item__btn {
+    height: 24px;
+  }
 }
 
 .btn--normal {
@@ -63,13 +71,4 @@ $primary-color: #ff9000;
   color: #ffffff;
   border-color: transparent;
   background-color: $primary-color;
-}
-
-@media (hover: none) {
-  .btn:hover,
-  .btn:focus {
-    color: inherit;
-    border-color: $primary-color;
-    background-color: $primary-color;
-  }
 }

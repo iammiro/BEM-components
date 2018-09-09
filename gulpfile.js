@@ -13,9 +13,20 @@ var sass = require('gulp-sass');
 var browserSync = require('browser-sync');
 var pug = require('gulp-pug');
 var clean = require('gulp-clean');
+var modernizr = require('gulp-modernizr');
+var sourcemaps = require('gulp-sourcemaps');
+
+gulp.task('modernizr', function () {
+  return gulp.src('./dev/scripts/*.js')
+    .pipe(modernizr({
+      options: ['setClasses']
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/scripts/'))
+});
 
 gulp.task('pug-components', function () {
-  return gulp.src(['./dev/components/**/index.pug', '!./dev/templates/default/index.pug', '!./dev/pages/index.pug' ,'!./dev/components/index.pug'])
+  return gulp.src(['./dev/components/**/index.pug', '!./dev/templates/default/index.pug', '!./dev/pages/index.pug', '!./dev/components/index.pug'])
     .pipe(pug({basedir: "./public"}))
     .pipe(gulp.dest("./public/components/"))
 });
@@ -46,6 +57,7 @@ gulp.task('images', function () {
 
 gulp.task('styles-components', function () {
   gulp.src(['dev/components/**/*.scss', '!dev/components/index.scss'])
+    .pipe(sourcemaps.init())
     .pipe(plumber({
       errorHandler: function (error) {
         console.log(error.message);
@@ -55,12 +67,14 @@ gulp.task('styles-components', function () {
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
     .pipe(minifycss())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/components/'))
     .pipe(browserSync.reload({stream: true}))
 });
 
 gulp.task('styles-main', function () {
   gulp.src(['dev/components/index.scss'])
+    .pipe(sourcemaps.init())
     .pipe(plumber({
       errorHandler: function (error) {
         console.log(error.message);
@@ -70,6 +84,7 @@ gulp.task('styles-main', function () {
     .pipe(sass())
     .pipe(autoprefixer('last 2 versions'))
     .pipe(minifycss())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/css/'))
     .pipe(browserSync.reload({stream: true}))
 });
@@ -77,7 +92,8 @@ gulp.task('styles-main', function () {
 gulp.task('styles', ['styles-components', 'styles-main']);
 
 gulp.task('scripts', function () {
-  return gulp.src('dev/scripts')
+  return gulp.src(['dev/scripts/**/*.js', 'node_modules/focus-visible/dist/focus-visible.js'])
+    .pipe(sourcemaps.init())
     .pipe(plumber({
       errorHandler: function (error) {
         console.log(error.message);
@@ -88,9 +104,8 @@ gulp.task('scripts', function () {
     .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
     .pipe(babel())
-    .pipe(gulp.dest('public/scripts/'))
-    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('public/scripts/'))
     .pipe(browserSync.reload({stream: true}))
 });
@@ -100,7 +115,7 @@ gulp.task('clean', function () {
     .pipe(clean());
 });
 
-gulp.task('default', ['browser-sync', 'pug', 'images', 'styles', 'scripts'], function () {
+gulp.task('default', ['browser-sync', 'pug', 'images', 'styles', 'scripts', 'modernizr'], function () {
   gulp.watch("dev/components/**/*.scss", ['styles', 'bs-reload']);
   gulp.watch("dev/scripts/**/*.js", ['scripts']);
   gulp.watch("dev/**/*.pug", ['pug', 'bs-reload']);
