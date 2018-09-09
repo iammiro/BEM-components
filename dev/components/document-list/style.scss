@@ -7,7 +7,6 @@
   font-family: sans-serif;
 }
 
-
 .document-list-item {
   border: 1px solid lightgray;
   display: flex;
@@ -32,7 +31,21 @@
   margin: 5px;
 }
 
+.document-list-item__document-name {
+  font-size: 14px;
+  padding-top: 4px;
+}
+
 .document-list-item__document-date {
   font-size: 13px;
   color: gray;
+}
+
+.touchevents {
+  .document-list-item__images-block {
+    margin: 15px;
+  }
+  .document-list-item__text {
+    margin: 5px 5px 5px 10px;
+  }
 }

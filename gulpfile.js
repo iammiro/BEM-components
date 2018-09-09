@@ -19,7 +19,8 @@ var sourcemaps = require('gulp-sourcemaps');
 gulp.task('modernizr', function () {
   return gulp.src('./dev/scripts/*.js')
     .pipe(modernizr({
-      options: ['setClasses']
+      options: ['setClasses'],
+      tests: ['touchevents']
     }))
     .pipe(uglify())
     .pipe(gulp.dest('public/scripts/'))
