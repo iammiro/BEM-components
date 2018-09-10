@@ -1,4 +1,9 @@
 extends ../../templates/default/index
 
+block styles
+    link(rel='stylesheet', href='/components/button/style.css')
+
 block content
-    +button('/', 'View Document')(class="btn")
+    +button('/', 'View Document')(class="btn btn--normal document-list-item__btn")
+    +button('/', 'View Document')(class="btn btn--normal document-list-item__btn btn--disable")
+

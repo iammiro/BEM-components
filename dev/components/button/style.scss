@@ -1,4 +1,5 @@
 $primary-color: #ff9000;
+$secondary-color: #e9ebee;
 
 @mixin button-reset {
   padding: 0;
@@ -11,7 +12,7 @@ $primary-color: #ff9000;
 
 .btn {
   @include button-reset;
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -33,14 +34,22 @@ $primary-color: #ff9000;
 .btn:active {
   transform: translateY(1px);
   filter: saturate(150%);
+  background-color: $primary-color;
+  background: $primary-color;
+  background: -moz-linear-gradient(top, $primary-color 1%, #efcb47 100%, #f1e767 100%, #f1e767 100%);
+  background: -webkit-linear-gradient(top, $primary-color 1%, #efcb47 100%, #f1e767 100%, #f1e767 100%);
+  background: linear-gradient(to bottom, $primary-color 1%, #efcb47 100%, #f1e767 100%, #f1e767 100%);
 }
 
 .no-touchevents {
   .btn:hover,
   .btn:focus {
     color: #ffffff;
-    border-color: darken($primary-color, 10);
-    background-color: lighten($primary-color, 10);
+    border-color: darken($primary-color, 15);
+    background-color: lighten($primary-color, 15);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(230, 104, 21, 1);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(230, 104, 21, 1);
+    box-shadow: 1px 1px 5px 0px rgba(230, 104, 21, 1);
   }
 }
 
@@ -59,6 +68,11 @@ $primary-color: #ff9000;
 .btn--normal {
   border: 1px solid #fd7722;
   background-color: $primary-color;
+  background: $primary-color;
+  background: -moz-linear-gradient(top, darken(#f1e767, 10) 0%, $primary-color 100%);
+  background: -webkit-linear-gradient(top, darken(#f1e767, 10) 0%, $primary-color 100%);
+  background: linear-gradient(to bottom, darken(#f1e767, 10) 0%, $primary-color 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1e767', endColorstr='#feb645', GradientType=0);
   color: #ffffff;
 }
 
@@ -67,9 +81,14 @@ $primary-color: #ff9000;
   pointer-events: none;
 }
 
-.btn--disable:hover,
-.btn--disable:focus {
-  color: #ffffff;
-  border-color: transparent;
-  background-color: $primary-color;
+.no-touchevents, .touchevents {
+  .btn--disable:hover,
+  .btn--disable:focus {
+    color: #ffffff;
+    border-color: transparent;
+    background-color: $primary-color;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
 }
